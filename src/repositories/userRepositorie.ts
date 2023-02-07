@@ -8,8 +8,8 @@ async function findUserByCPF(CPF: string) {
   return await client.users.findFirst({ where: { CPF } });
 }
 
-async function findUserPage(page: number) {
+async function findUsers(page: number) {
   await client.users.findMany();
 }
 
-export { insertNewUser, findUserByCPF, findUserPage };
+export { insertNewUser, findUserByCPF, findUsers };
