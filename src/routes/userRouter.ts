@@ -14,7 +14,7 @@ userRouter.post(
   validateSchemaMiddleware(userSchema),
   registerUser
 );
-userRouter.get("/user/cpf", getUsersByCPF);
+userRouter.get("/user/:CPF", getUsersByCPF);
 userRouter.get("/user/page", getUsersByPage);
 
 export default userRouter;

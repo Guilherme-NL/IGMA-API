@@ -6,18 +6,32 @@ import {
 import CPFValidation from "../schemas/CPFSchema.js";
 
 async function registerNewUser(name: string, CPF: string, birthday: string) {
-  const CPFOnlyNumber = CPF.replace(/-|\./g, "");
+  const CPFOnlyNumber = standardizeCPF(CPF);
   CPFValidation(CPFOnlyNumber);
   await CPFValidationInDataBase(CPFOnlyNumber);
   await insertNewUser(name, CPFOnlyNumber, birthday);
 }
 
 async function getUserServiceByCPF(CPF: string) {
-  await findUserByCPF(CPF);
+  const CPFOnlyNumber = standardizeCPF(CPF);
+
+  const user = await findUserByCPF(CPFOnlyNumber);
+  if (!user) {
+    throw {
+      code: 404,
+      message: "There are no registered customers with the informed CPF!",
+    };
+  } else {
+    return user;
+  }
 }
 
 async function getUserService(page: number) {
   await findUsers(page);
+}
+
+function standardizeCPF(CPF: string) {
+  return CPF.replace(/-|\./g, "");
 }
 
 async function CPFValidationInDataBase(CPFOnlyNumber: string) {

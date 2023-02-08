@@ -19,11 +19,11 @@ export async function registerUser(req: Request, res: Response) {
 }
 
 export async function getUsersByCPF(req: Request, res: Response) {
-  const { CPF } = req.body;
+  const { CPF } = req.params;
 
-  await getUserServiceByCPF(CPF);
   try {
-    res.sendStatus(200);
+    const user = await getUserServiceByCPF(CPF);
+    res.status(200).send(user);
   } catch (err) {
     if (err.code) {
       res.status(err.code).send(err.message);
