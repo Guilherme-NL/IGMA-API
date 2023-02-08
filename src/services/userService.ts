@@ -3,8 +3,10 @@ import {
   findUserByCPF,
   findUsers,
 } from "../repositories/userRepositorie.js";
+import CPFValidation from "../schemas/CPFSchema.js";
 
 async function registerNewUser(name: string, CPF: string, birthday: string) {
+  CPFValidation(CPF);
   await insertNewUser(name, CPF, birthday);
 }
 

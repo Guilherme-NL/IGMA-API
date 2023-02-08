@@ -8,12 +8,14 @@ import {
 export async function registerUser(req: Request, res: Response) {
   const { name, CPF, birthday } = req.body;
   console.log(req.body);
-  await registerNewUser(name, CPF, birthday);
 
   try {
+    await registerNewUser(name, CPF, birthday);
     res.sendStatus(201);
   } catch (err) {
-    res.sendStatus(422);
+    if (err.code) {
+      res.status(err.code).send(err.message);
+    }
   }
 }
 
