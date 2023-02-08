@@ -32,10 +32,11 @@ export async function getUsersByCPF(req: Request, res: Response) {
 }
 
 export async function getUsersByPage(req: Request, res: Response) {
-  const { page } = req.body;
-  await getUserService(page);
+  const { take, skip } = req.query;
+
   try {
-    res.sendStatus(200);
+    const users = await getUserService(String(take), String(skip));
+    res.status(200).send(users);
   } catch (err) {
     if (err.code) {
       res.status(err.code).send(err.message);

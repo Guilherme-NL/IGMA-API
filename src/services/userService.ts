@@ -7,6 +7,7 @@ import CPFValidation from "../schemas/CPFSchema.js";
 
 async function registerNewUser(name: string, CPF: string, birthday: string) {
   const CPFOnlyNumber = standardizeCPF(CPF);
+
   CPFValidation(CPFOnlyNumber);
   await CPFValidationInDataBase(CPFOnlyNumber);
   await insertNewUser(name, CPFOnlyNumber, birthday);
@@ -26,8 +27,9 @@ async function getUserServiceByCPF(CPF: string) {
   }
 }
 
-async function getUserService(page: number) {
-  await findUsers(page);
+async function getUserService(take: string, skip: string) {
+  const users = await findUsers(take, skip);
+  return users;
 }
 
 function standardizeCPF(CPF: string) {

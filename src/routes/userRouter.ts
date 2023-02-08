@@ -15,6 +15,6 @@ userRouter.post(
   registerUser
 );
 userRouter.get("/user/:CPF", getUsersByCPF);
-userRouter.get("/user/page", getUsersByPage);
+userRouter.get("/user", getUsersByPage);
 
 export default userRouter;
