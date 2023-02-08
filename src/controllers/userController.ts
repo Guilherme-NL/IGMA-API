@@ -1,8 +1,14 @@
 import { Request, Response } from "express";
+import {
+  registerNewUser,
+  getUserServiceByCPF,
+  getUserService,
+} from "../services/userService.js";
 
 export async function registerUser(req: Request, res: Response) {
   const { name, CPF, birthday } = req.body;
   console.log(req.body);
+  await registerNewUser(name, CPF, birthday);
 
   try {
     res.sendStatus(201);
@@ -13,6 +19,8 @@ export async function registerUser(req: Request, res: Response) {
 
 export async function getUsersByCPF(req: Request, res: Response) {
   const { CPF } = req.body;
+
+  await getUserServiceByCPF(CPF);
   try {
     res.sendStatus(200);
   } catch (err) {
@@ -21,6 +29,8 @@ export async function getUsersByCPF(req: Request, res: Response) {
 }
 
 export async function getUsersByPage(req: Request, res: Response) {
+  const { page } = req.body;
+  await getUserService(page);
   try {
     res.sendStatus(200);
   } catch (err) {

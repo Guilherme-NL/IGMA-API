@@ -2,7 +2,7 @@ import {
   insertNewUser,
   findUserByCPF,
   findUsers,
-} from "../repositories/userRepositorie";
+} from "../repositories/userRepositorie.js";
 
 async function registerNewUser(name: string, CPF: string, birthday: string) {
   await insertNewUser(name, CPF, birthday);
