@@ -1,6 +1,4 @@
-export default function CPFValidation(CPF: string) {
-  const CPFOnlyNumber = CPF.replace(/-|\./g, "");
-  console.log(CPFOnlyNumber);
+export default function CPFValidation(CPFOnlyNumber: string) {
   firstDigitValidation(CPFOnlyNumber);
   secondDigitValidation(CPFOnlyNumber);
 }
@@ -17,13 +15,12 @@ function algorithmValidation(CPFdigits: string) {
   } else {
     digit = 11 - rest;
   }
-  console.log(digit);
+
   return digit;
 }
 
 function firstDigitValidation(CPFOnlyNumber: string) {
   const CPFDigits = CPFOnlyNumber.substring(0, 9);
-  console.log(CPFDigits);
   const digit = algorithmValidation(CPFDigits);
 
   if (digit !== Number(CPFOnlyNumber[9]))

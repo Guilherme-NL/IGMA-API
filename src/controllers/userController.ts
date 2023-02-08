@@ -7,7 +7,6 @@ import {
 
 export async function registerUser(req: Request, res: Response) {
   const { name, CPF, birthday } = req.body;
-  console.log(req.body);
 
   try {
     await registerNewUser(name, CPF, birthday);
@@ -26,7 +25,9 @@ export async function getUsersByCPF(req: Request, res: Response) {
   try {
     res.sendStatus(200);
   } catch (err) {
-    res.sendStatus(422);
+    if (err.code) {
+      res.status(err.code).send(err.message);
+    }
   }
 }
 
@@ -36,6 +37,8 @@ export async function getUsersByPage(req: Request, res: Response) {
   try {
     res.sendStatus(200);
   } catch (err) {
-    res.sendStatus(422);
+    if (err.code) {
+      res.status(err.code).send(err.message);
+    }
   }
 }

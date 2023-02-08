@@ -5,7 +5,9 @@ async function insertNewUser(name: string, CPF: string, birthday: string) {
 }
 
 async function findUserByCPF(CPF: string) {
-  return await client.users.findFirst({ where: { CPF } });
+  const user = await client.users.findFirst({ where: { CPF } });
+  console.log(user);
+  return user;
 }
 
 async function findUsers(page: number) {
