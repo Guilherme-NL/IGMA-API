@@ -21,12 +21,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:4000/register",
-					"protocol": "http",
+					"raw": "https://igma-api.vercel.app/register",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"igma-api",
+						"vercel",
+						"app"
 					],
-					"port": "4000",
 					"path": [
 						"register"
 					]
@@ -40,12 +41,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/user/20152711040",
-					"protocol": "http",
+					"raw": "https://igma-api.vercel.app/user/20152711040",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"igma-api",
+						"vercel",
+						"app"
 					],
-					"port": "4000",
 					"path": [
 						"user",
 						"20152711040"
@@ -60,12 +62,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:4000/user?take=20&skip=0",
-					"protocol": "http",
+					"raw": "https://igma-api.vercel.app/user?take=20&skip=0",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"igma-api",
+						"vercel",
+						"app"
 					],
-					"port": "4000",
 					"path": [
 						"user"
 					],
