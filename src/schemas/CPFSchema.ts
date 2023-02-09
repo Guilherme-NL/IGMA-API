@@ -1,3 +1,5 @@
+import { wrongSchemaError } from "../utils/errorUtils.js";
+
 export default function CPFValidation(CPFOnlyNumber: string) {
   firstDigitValidation(CPFOnlyNumber);
   secondDigitValidation(CPFOnlyNumber);
@@ -24,10 +26,7 @@ function firstDigitValidation(CPFOnlyNumber: string) {
   const digit = algorithmValidation(CPFDigits);
 
   if (digit !== Number(CPFOnlyNumber[9]))
-    throw {
-      code: 422,
-      message: "invalid CPF!",
-    };
+    throw wrongSchemaError("invalid CPF!");
 }
 
 function secondDigitValidation(CPFOnlyNumber: string) {
@@ -35,8 +34,5 @@ function secondDigitValidation(CPFOnlyNumber: string) {
   const digit = algorithmValidation(CPFDigits);
 
   if (digit !== Number(CPFOnlyNumber[10]))
-    throw {
-      code: 422,
-      message: "invalid CPF!",
-    };
+    throw wrongSchemaError("invalid CPF!");
 }

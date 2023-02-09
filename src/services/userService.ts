@@ -4,6 +4,7 @@ import {
   findUsers,
 } from "../repositories/userRepositorie.js";
 import CPFValidation from "../schemas/CPFSchema.js";
+import { notFoundError, conflictError } from "../utils/errorUtils.js";
 
 async function registerNewUser(name: string, CPF: string, birthday: string) {
   const CPFOnlyNumber = standardizeCPF(CPF);
@@ -18,16 +19,15 @@ async function getUserServiceByCPF(CPF: string) {
 
   const user = await findUserByCPF(CPFOnlyNumber);
   if (!user) {
-    throw {
-      code: 404,
-      message: "There are no registered customers with the informed CPF!",
-    };
+    throw notFoundError(
+      "There are no registered customers with the informed CPF!"
+    );
   } else {
     return user;
   }
 }
 
-async function getUserService(take: string, skip: string) {
+async function getUserService(take?: string, skip?: string) {
   const users = await findUsers(take, skip);
   return users;
 }
@@ -39,10 +39,9 @@ function standardizeCPF(CPF: string) {
 async function CPFValidationInDataBase(CPFOnlyNumber: string) {
   const user = await findUserByCPF(CPFOnlyNumber);
   if (user) {
-    throw {
-      code: 409,
-      message: "There is already a customer registered with this CPF!",
-    };
+    throw conflictError(
+      "There is already a customer registered with this CPF!"
+    );
   }
 }
 

@@ -8,32 +8,20 @@ import {
 export async function registerUser(req: Request, res: Response) {
   const { name, CPF, birthday } = req.body;
 
-  try {
-    await registerNewUser(name, CPF, birthday);
-    res.sendStatus(201);
-  } catch (err) {
-    if (err.code) {
-      res.status(err.code).send(err.message);
-    }
-  }
+  await registerNewUser(name, CPF, birthday);
+  res.sendStatus(201);
 }
 
 export async function getUsersByCPF(req: Request, res: Response) {
   const { CPF } = req.params;
 
-  try {
-    const user = await getUserServiceByCPF(CPF);
-    res.status(200).send(user);
-  } catch (err) {
-    if (err.code) {
-      res.status(err.code).send(err.message);
-    }
-  }
+  const user = await getUserServiceByCPF(CPF);
+  res.status(200).send(user);
 }
 
 export async function getUsersByPage(req: Request, res: Response) {
   const { take, skip } = req.query;
 
-  const users = await getUserService(String(take), String(skip));
+  const users = await getUserService(take as string, skip as string);
   res.status(200).send(users);
 }
