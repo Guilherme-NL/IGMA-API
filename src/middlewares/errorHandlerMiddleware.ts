@@ -4,6 +4,7 @@ import {
   errorTypeToStatusCode,
   isAppError,
 } from "../utils/errorUtils.js";
+import logger from "../logger.js";
 
 export function errorHandlerMiddleware(
   err: Error | AppError,
@@ -11,7 +12,7 @@ export function errorHandlerMiddleware(
   res: Response,
   next: NextFunction
 ) {
-  console.log(err);
+  logger.error(err);
 
   if (isAppError(err)) {
     return res.status(errorTypeToStatusCode(err.type)).send(err.message);
