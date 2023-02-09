@@ -19,7 +19,7 @@ Nessa rota é possível adicionar um novo usuário (cliente) informando no corpo
 ```
 {
   "name": "Guilherme",
-  "CPF": "78510920002",
+  "CPF": "142.815.690-90",
   "birthday": "10/10/1996"
 }
 ```
@@ -31,7 +31,7 @@ Essa rota retorna os dados de um usuário cadastrado, enviando seu CPF como para
 {
   "id": 1
   "name": "Guilherme",
-  "CPF": "78510920002",
+  "CPF": "14281569090",
   "birthday": "10/10/1996"
 }
 ```
@@ -47,11 +47,12 @@ git clone https://github.com/Guilherme-NL/IGMA-API.git
 ```
 2) Criar um arquivo .env com as mesmas informações do arquivo .env.example. 
 ```
-PORT=
-DATABASE_URL=
-POSTGRES_USER=
-POSTGRES_PASSWORD=
-POSTGRES_DB=
+PORT= #porta que deseja rodar a aplicação, esse parametro é opcional, por padrão a aplicação vai rodar na porta 4000
+DATABASE_URL= postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
+POSTGRES_USER= #Usuário Postgres
+POSTGRES_PASSWORD= #Senha Postegres
+POSTGRES_HOST= postgres_IGMA_db 
+POSTGRES_DB= #Nome do banco de dados
 ```
 ### Iniciar API via docker
 
@@ -62,15 +63,33 @@ docker compose up
 Pronto! a API está funcionando na porta 4000 dá sua máquina (http://localhost:4000/).
 
 ### Testes
-Usamos Jest e SuperTest para realizar os testes, em ambiente de desenvolvimento. Para testar a aplicação basta:
+Usamos Jest e SuperTest para realizar os testes. Para testar a aplicação basta:
 
 1) Criar arquivo .env.test no seguinte formato:
 ```
-PORT=
-DATABASE_URL=
+PORT= #porta que deseja rodar a aplicação, esse parametro é opcional, por padrão a aplicação vai rodar na porta 4000
+DATABASE_URL= postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DATABASE}
+POSTGRES_USER= #Usuário Postgres
+POSTGRES_PASSWORD= #Senha Postegres
+POSTGRES_DB= #Nome do banco de dados (ex: IGMA_DB_test)
 ```
 2) Intalar os pacotes e rodar os testes:
 ```
 npm i
 npm run test
+```
+
+### Rodar aplicação em ambiente de desenvolvimento:
+1) Criar arquivo .env.development no seguinte formato:
+```
+PORT= #porta que deseja rodar a aplicação, esse parametro é opcional, por padrão a aplicação vai rodar na porta 4000
+DATABASE_URL= postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DATABASE}
+POSTGRES_USER= #Usuário Postgres
+POSTGRES_PASSWORD= #Senha Postegres
+POSTGRES_DB= #Nome do banco de dados (ex: IGMA_DB_dev)
+```
+2) Intalar os pacotes e rodar os testes:
+```
+npm i
+npm run dev
 ```
