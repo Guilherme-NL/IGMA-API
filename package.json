@@ -8,6 +8,7 @@
     "build": "tsc",
     "dev": "dotenv -e .env.development prisma migrate dev && dotenv -e .env.development nodemon src/server.ts",
     "start": "npx prisma migrate deploy && node dist/src/server.js",
+    "vercel-build": "npx prisma migrate deploy",
     "prisma-test": "dotenv -e .env.test prisma migrate reset --skip-seed",
     "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test jest --no-cache"
   },
