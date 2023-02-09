@@ -26,7 +26,7 @@ Nessa rota é possível adicionar um novo usuário (cliente) informando no corpo
 Caso o CPF informado não seja válido, a rota retorna erro 422
 
 ### GET("/user/:CPF")
-Essa rota retorna os dados de um usuário cadastrado, enviando seu CPF como parametro. Portanto, fazendo uma requisição para "localhost:4000/user/142.815.690-90", por exemplo, a rota retorna:
+Essa rota retorna os dados de um usuário cadastrado, enviando seu CPF como parâmetro. Portanto, fazendo uma requisição para "localhost:4000/user/142.815.690-90", por exemplo, a rota retorna:
 ```
 {
   "id": 1
@@ -37,7 +37,7 @@ Essa rota retorna os dados de um usuário cadastrado, enviando seu CPF como para
 ```
 
 ### GET("/user")
-Essa rota recebe 2 parametros via query, take e skip (https://www.prisma.io/docs/concepts/components/prisma-client/pagination). take defini o número de usuários listados por página e skip, como o nome sugere, o salto. Caso take e skip não sejam passados via query, a rota retorna todos os usuários cadastrados.
+Essa rota recebe 2 parâmetros via query, take e skip (https://www.prisma.io/docs/concepts/components/prisma-client/pagination). take define o número de usuários listados por página e skip, como o nome sugere, o salto. Caso take e skip não sejam passados via query, a rota retorna todos os usuários cadastrados.
 
 ## Uso da API via docker
 
@@ -47,10 +47,10 @@ git clone https://github.com/Guilherme-NL/IGMA-API.git
 ```
 2) Criar um arquivo .env com as mesmas informações do arquivo .env.example. 
 ```
-PORT= #porta que deseja rodar a aplicação, esse parametro é opcional, por padrão a aplicação vai rodar na porta 4000
+PORT= #porta que deseja rodar a aplicação, esse parâmetro é opcional, por padrão a aplicação vai rodar na porta 4000
 DATABASE_URL= postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}
 POSTGRES_USER= #INformar usuário Postgres (ex: postgres)
-POSTGRES_PASSWORD= #Informar senha Postegres (ex: postgres)
+POSTGRES_PASSWORD= #Informar senha Postgres (ex: postgres)
 POSTGRES_HOST= postgres_IGMA_db 
 POSTGRES_DB= #Informar nome do banco de dados (ex: IGMA_DB)
 ```
@@ -58,7 +58,7 @@ POSTGRES_DB= #Informar nome do banco de dados (ex: IGMA_DB)
 ```
 docker compose up
 ```
-Pronto! a API está funcionando na porta 4000 dá sua máquina (http://localhost:4000/).
+Pronto! A API está funcionando na porta 4000 da sua máquina (http://localhost:4000/).
 
 ### Testes
 Usamos Jest e SuperTest para realizar os testes. Para testar a aplicação basta:
@@ -72,7 +72,7 @@ POSTGRES_PASSWORD= #Informar senha Postegres (ex: postgres)
 POSTGRES_HOST=localhost
 POSTGRES_DB= #Informar nome do banco de dados (ex: IGMA_DB_test)
 ```
-2) Intalar os pacotes e rodar os testes:
+2) Instalar os pacotes e rodar os testes:
 ```
 npm i
 npm run test
@@ -88,7 +88,7 @@ POSTGRES_PASSWORD= #Informar senha Postegres (ex: postgres)
 POSTGRES_HOST=localhost
 POSTGRES_DB= #Informar nome do banco de dados (ex: IGMA_DB_dev)
 ```
-2) Intalar os pacotes e rodar os testes:
+2) Instalar os pacotes e rodar os testes:
 ```
 npm i
 npm run dev
@@ -96,4 +96,8 @@ npm run dev
 
 ### Testando API no Postman:
 
-Foi incluido o arquivo IGMA.postman_collection.json, na pasta collection, basta importá-lo no Postman para testar as rotas da API. Para isso é necessário ter a aplicação rodando.
+Foi incluído o arquivo IGMA.postman_collection.json, na pasta collection, basta importá-lo no Postman para testar as rotas da API. Para isso é necessário ter a aplicação rodando.
+
+### Logs da aplicação
+
+Os logs da aplicação são salvos em um arquivo app.log na raiz do projeto.
